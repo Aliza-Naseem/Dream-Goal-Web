@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# Redirect to remove .html from URLs
+RewriteCond %{THE_REQUEST} \s/([^.]+)\.html [NC]
+RewriteRule ^ %1 [R=301,L]
+
+# Internally rewrite to add .html extension
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^.]+)$ $1.html [L]
